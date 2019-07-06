@@ -18,13 +18,16 @@ if response.status_code != 200:
 # deserialize the json
 weather = response.json()
 
+weather_main = weather ['weather'][0]['main']
 weather_description = weather['weather'][0]['description']
 weather_current_temp = round(weather['main']['temp'] - 273.15, 1)
 weather_min_temp = round(weather['main']['temp_min'] - 273.15, 1)
 weather_max_temp = round(weather['main']['temp_max'] - 273.15, 1)
+weather_humidity = weather['main']['humidity']
 
-print('Todays weather: '
-        + str(weather_description) + ' with highs of ' + str(weather_max_temp)
+print('Today\'s weather: ' + weather_main + ', '
+        + weather_description + ' with highs of ' + str(weather_max_temp)
         + ' and lows of ' + str(weather_min_temp))
 print('Current temperature: ' + str(weather_current_temp))
+print('Current humidity: ' + str(weather_humidity))
 input()
